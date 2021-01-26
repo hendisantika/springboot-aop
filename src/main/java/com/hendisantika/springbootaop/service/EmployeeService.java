@@ -1,6 +1,7 @@
 package com.hendisantika.springbootaop.service;
 
 import com.hendisantika.springbootaop.aop.CalculatePerformance;
+import com.hendisantika.springbootaop.aop.MethodLogger;
 import com.hendisantika.springbootaop.model.Employee;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +29,12 @@ public class EmployeeService {
         });
         sleepForSeconds(5000L);
         return empStream.findAny().get();
+    }
+
+    @MethodLogger
+    public String addEmployee(Employee e) {
+        employeeLst.add(e);
+        sleepForSeconds(3000L);
+        return "Success";
     }
 }
