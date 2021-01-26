@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,20 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
  * Time: 06.50
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/employee")
 public class EmployeeController {
     @Autowired
     private EmployeeService dummyService;
 
     // Get the employee detail based on employee id
-    @GetMapping("/employee/{empid}")
+    @GetMapping("/{empid}")
     public Employee getEmployee(@PathVariable("empid") String empId) {
         return dummyService.getEmployee(empId);
     }
 
     //post the new employee details to backend
-    @PostMapping("/employee")
+    @PostMapping
     public String newEmployee(@RequestBody Employee employee) {
         return dummyService.addEmployee(employee);
+    }
+
+    // update the employee depart using emp id
+    @PutMapping("/{empid}")
+    public String updateEmployee(@PathVariable("empid") String empId, @RequestParam("deptName") String deptName) {
+        return dummyService.updateEmployeeDept(empId, deptName);
     }
 }
