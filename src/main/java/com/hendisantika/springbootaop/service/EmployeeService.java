@@ -1,10 +1,12 @@
 package com.hendisantika.springbootaop.service;
 
+import com.hendisantika.springbootaop.aop.CalculatePerformance;
 import com.hendisantika.springbootaop.model.Employee;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +21,12 @@ import java.util.List;
 public class EmployeeService {
     private static final List<Employee> employeeLst = new ArrayList<>();
 
+    @CalculatePerformance
+    public Employee getEmployee(String empId) {
+        Stream<Employee> empStream = employeeLst.stream().filter(emp -> {
+            return emp.getEmpId().equalsIgnoreCase(empId);
+        });
+        sleepForSeconds(5000L);
+        return empStream.findAny().get();
+    }
 }
