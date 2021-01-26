@@ -57,6 +57,15 @@ public class EmployeeService {
         if (employeeLst.removeIf(emp -> emp.getEmpId().equalsIgnoreCase(empId)))
             return "SUCCESS";
         else
-            return "FAIURE";
+            return "FAILURE";
     }
+
+    public void sleepForSeconds(Long period) {
+        try {
+            Thread.sleep(period);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
