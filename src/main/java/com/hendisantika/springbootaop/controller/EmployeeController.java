@@ -3,14 +3,7 @@ package com.hendisantika.springbootaop.controller;
 import com.hendisantika.springbootaop.model.Employee;
 import com.hendisantika.springbootaop.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -43,5 +36,11 @@ public class EmployeeController {
     @PutMapping("/{empid}")
     public String updateEmployee(@PathVariable("empid") String empId, @RequestParam("deptName") String deptName) {
         return dummyService.updateEmployeeDept(empId, deptName);
+    }
+
+    // Delete the employee
+    @DeleteMapping("/{empid}")
+    public String deleteEmployee(@PathVariable("empid") String empId) {
+        return dummyService.deleteEmployee(empId);
     }
 }
