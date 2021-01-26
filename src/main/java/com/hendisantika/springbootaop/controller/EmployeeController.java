@@ -5,6 +5,8 @@ import com.hendisantika.springbootaop.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,5 +29,11 @@ public class EmployeeController {
     @GetMapping("/employee/{empid}")
     public Employee getEmployee(@PathVariable("empid") String empId) {
         return dummyService.getEmployee(empId);
+    }
+
+    //post the new employee details to backend
+    @PostMapping("/employee")
+    public String newEmployee(@RequestBody Employee employee) {
+        return dummyService.addEmployee(employee);
     }
 }
