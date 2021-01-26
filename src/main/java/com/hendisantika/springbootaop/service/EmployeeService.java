@@ -68,4 +68,20 @@ public class EmployeeService {
         }
     }
 
+    static {
+        Employee emp1 = new Employee();
+        Employee emp2 = new Employee();
+        // employee 1
+        emp1.setEmpId("A1234");
+        emp1.setEmpName("Uzumaki Naruto");
+        emp1.setDeptName("IT");
+        // employee 2
+        emp2.setEmpId("B1234");
+        emp2.setEmpName("Uchiha Sasuke");
+        emp2.setDeptName("Finance");
+
+        employeeLst.add(emp1);
+        employeeLst.add(emp2);
+    }
+
 }
