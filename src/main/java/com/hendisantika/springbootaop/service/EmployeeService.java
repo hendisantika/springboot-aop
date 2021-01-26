@@ -37,4 +37,15 @@ public class EmployeeService {
         sleepForSeconds(3000L);
         return "Success";
     }
+
+    @MethodLogger
+    public String updateEmployeeDept(String empId, String deptName) {
+        employeeLst.stream().forEach(emp -> {
+            if (emp.getEmpId().equalsIgnoreCase(empId)) {
+                emp.setDeptName(deptName);
+            }
+        });
+        sleepForSeconds(2000L);
+        return "SUCCESS";
+    }
 }
