@@ -3,6 +3,7 @@ package com.hendisantika.springbootaop.service;
 import com.hendisantika.springbootaop.aop.CalculatePerformance;
 import com.hendisantika.springbootaop.aop.MethodLogger;
 import com.hendisantika.springbootaop.model.Employee;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
  * Time: 06.36
  */
 @Component
+@Log4j2
 public class EmployeeService {
     private static final List<Employee> employeeLst = new ArrayList<>();
 
@@ -47,5 +49,14 @@ public class EmployeeService {
         });
         sleepForSeconds(2000L);
         return "SUCCESS";
+    }
+
+    @MethodLogger
+    public String deleteEmployee(String empId) {
+        log.info("Employee Id -->" + empId);
+        if (employeeLst.removeIf(emp -> emp.getEmpId().equalsIgnoreCase(empId)))
+            return "SUCCESS";
+        else
+            return "FAIURE";
     }
 }
