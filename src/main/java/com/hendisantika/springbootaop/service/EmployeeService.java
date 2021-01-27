@@ -25,6 +25,11 @@ public class EmployeeService {
     private static final List<Employee> employeeLst = new ArrayList<>();
 
     @CalculatePerformance
+    public List<Employee> getEmployees() {
+        return employeeLst;
+    }
+
+    @CalculatePerformance
     public Employee getEmployee(String empId) {
         Stream<Employee> empStream = employeeLst.stream().filter(emp -> {
             return emp.getEmpId().equalsIgnoreCase(empId);
